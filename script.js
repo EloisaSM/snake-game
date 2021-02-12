@@ -44,6 +44,13 @@ function startGame() {
     if(snake[0].y > 15 * box && direction == 'down') snake[0].x = 0;
     if(snake[0].y < 0  && direction == 'up') snake[0].x = 16 * box;
 
+    for(i = 1; i < snake.length; i++){
+        if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
+            clearInterval(game);
+            alert('Game Over!')
+        }
+    }
+
     createBG()
     creatSnake()
     drawFood()
@@ -51,24 +58,35 @@ function startGame() {
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
-    switch (direction) {
-        case "right" : 
-            snakeX += box;
-            break;
-        case "left" :
-            snakeX -= box;
-            break;
-        case "up": 
-            snakeY -= box;
-            break;
-        case "down":
-            snakeY += box;
-            break;
-        default:
-            console.log("algo deu errado")
+    if(direction == "right")snakeX += box;
+    if(direction == "left")snakeX -= box;
+    if(direction == "up")snakeY -= box;
+    if(direction == "down")snakeY += box;
+    // switch (direction) {
+    //     case "right" : 
+    //         snakeX += box;
+    //         break;
+    //     case "left" :
+    //         snakeX -= box;
+    //         break;
+    //     case "up": 
+    //         snakeY -= box;
+    //         break;
+    //     case "down":
+    //         snakeY += box;
+    //         break;
+    //     default:
+    //         console.log("algo deu errado")
+    // }
+
+    if(snakeX != food.x || snakeY != food.y){
+        snake.pop();
+    }else{
+        food.x = Math.floor(Math.random() * 15 + 1) * box;
+        food.y = Math.floor(Math.random() * 15 +1) * box;
     }
     
-    snake.pop();
+    
 
     let newHead = {
         x: snakeX,
@@ -78,5 +96,5 @@ function startGame() {
     snake.unshift(newHead);
 }
 
-let game = setInterval(startGame,100);
+let game = setInterval(startGame, 100);
 
