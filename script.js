@@ -23,7 +23,36 @@ function creatSnake() {
 function startGame() {
     createBG()
     creatSnake()
+
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+
+    switch (direction) {
+        case "right" : 
+            snakeX += box;
+            break;
+        case "left" :
+            snakeX += box;
+            break;
+        case "up": 
+            snakeY += box;
+            break;
+        case "down":
+            snakeY += box;
+            break;
+        default:
+            console.log("algo deu errado")
+    }
+    
+    snake.pop();
+
+    let newHead = {
+        x: snakeX,
+        y: snakeY
+    }
+
+    snake.unshift(newHead);
 }
 
-let game = setInterval(startGame,100)
+let game = setInterval(startGame,100);
 
