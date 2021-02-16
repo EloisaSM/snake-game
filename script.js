@@ -62,22 +62,6 @@ function startGame() {
     if(direction == "left")snakeX -= box;
     if(direction == "up")snakeY -= box;
     if(direction == "down")snakeY += box;
-    // switch (direction) {
-    //     case "right" : 
-    //         snakeX += box;
-    //         break;
-    //     case "left" :
-    //         snakeX -= box;
-    //         break;
-    //     case "up": 
-    //         snakeY -= box;
-    //         break;
-    //     case "down":
-    //         snakeY += box;
-    //         break;
-    //     default:
-    //         console.log("algo deu errado")
-    // }
 
     if(snakeX != food.x || snakeY != food.y){
         snake.pop();
